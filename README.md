@@ -3,7 +3,7 @@ SAM is a sequence alignment file
 
 Using guppy basecaller:
 
-Guppy basecaller is used to create a FASTQ file for the FAST5 files of human RNA from http://s3.amazonaws.com/nanopore-human-wgs/rna/links/Bham_Run1_20171009_DirectRNA.files.txt
+Guppy basecaller is used to create a FASTQ file for the FAST5 files of human RNA from http://s3.amazonaws.com/nanopore-human-wgs/rna/links/Hopkins_Run1_20170928_DirectRNA.files.txt
 
 How to use guppy_basecaller:
 
@@ -11,7 +11,7 @@ The code used to perform basecalling using guppy_basecaller is
 
 using config file: ./guppy_basecaller -i -s -c using flow cell and kit: ./guppy_basecaller -i -s --flowcell --kit
 
-in this case I used RNA FAST5 files from Bham centre run1 of RNA with kit SQK-RNA001 and corresponding flowcell from guppy_basecaller --print_workflows FLO-MIN106 and FLO-MIN107
+in this case I used RNA FAST5 files from JHU centre run1 of RNA with kit SQK-RNA001 and corresponding flowcell from guppy_basecaller --print_workflows FLO-MIN106 and FLO-MIN107
 
 we can use config file rna_r9.4.1_70bps_hac based on SQK-RNA001
 
