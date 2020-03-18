@@ -1,0 +1,62 @@
+#!/bin/bash
+
+
+###STAR analysis
+
+
+### number of reads in FASTQ file
+
+wc -l ENCFF000EWJ.fastq/4
+## 117876320
+wc -l ENCFF000EXE.fastq/4
+##131831897 
+wc -l ENCFF000EZF.fastq/4
+##95520094
+wc -l ENCFF000EZH.fastq/4
+##127696795
+wc -l ENCFF000FCG.fastq/4
+##128402941
+wc -l ENCFF000FCH.fastq/4
+##116517502
+wc -l ENCFF001RCX.fastq/4
+##141170272
+wc -l ENCFF001RCY.fastq/4
+##246085152
+
+total number of reads = 1105100973
+
+mean = 138137622
+
+### number of reads mapped to genome
+
+samtools view -c -F 4 sample.bam
+
+ewj_ewx.bam - 159459404
+eww_exe.bam - 287156562
+ezf_ezt.bam - 212866686
+ezr_ezh.bam - 296704478
+fcg_fci.bam - 276493240
+fch_fcu.bam- 254746938
+rcx_rdf.bam - 260688130
+rcy_rdg.bam - 89422560
+
+total number of mapped reads = 1837537998
+
+avg value of mapped reads = 229692250
+
+###number of reads mapped to transcriptome
+
+#227818
+
+
+###kallisto performs mapping to transcriptome 
+
+#count number of transcripts in kallisto abundance.tsv with expression values > 0
+
+##168079
+
+###number of different genes identified
+
+##60676 
+
+
