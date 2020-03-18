@@ -1,0 +1,26 @@
+#!/bin/bash
+
+basedir = /hpcnfs/home/ieo5306/projects/genome_analysis/data
+
+
+#download FASTQ file from consortium in github which is generated using latest version of guppy
+
+wget -P $basedir  http://s3.amazonaws.com/nanopore-human-wgs/rna/fastq/NA12878-DirectRNA_All_Guppy_3.2.6.fastq.gz
+
+gunzip NA12878-DirectRNA_All_Guppy_3.2.6.fastq.gz
+
+#download human genome fasta file from ftp ensembl
+
+wget -P $basedir  http://labshare.cshl.edu/shares/gingeraslab/www-data/dobin/STAR/STARgenomes/ENSEMBL/homo_sapiens/ENSEMBL.homo_sapiens.release-83/Homo_sapiens.GRCh38.dna.primary_assembly.fa
+
+
+#perform mapping using minimap2 specifying all the required parameters using fasta file from above step and fastq file from consortium
+
+minimap2 -a -x splice -k14 -uf Homo_sapiens.GRCh38.dna.primary_assembly.fa NA12878-DirectRNA_All_Guppy_3.2.6.fastq > genome.sam
+
+samtools view genome.sam -bh -t -F 2324 Homo_sapiens.GRCh38.dna.primary_assembly.fa > genome.filt.bam
+
+#nanocount using sam file generated to produce counts for sequences that are mapped
+
+NanoCount -i $basedir/genome.filt.bam -o $basedir/rna_count
+
