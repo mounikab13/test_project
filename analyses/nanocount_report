@@ -1,0 +1,52 @@
+#!/bin/bash
+
+
+## nanopore analysis 
+
+###number of reads in FASTQ file
+
+###FASTQ file contains 4 lines pertaining to one read so count all lines and divide by 4 gives number of fastq reads
+
+wc -l NA12878-DirectRNA_All_Guppy_3.2.6.fastq/4 = 13361612
+
+###number of mapped reads to genome
+
+###mapping to genome produces sam file which is then converted to bam file
+
+samtools -S -b genome.sam > genome.bam
+
+###number of mapped reads with flag value 4 in BAM file 
+
+samtools view -c -F 4 genome.bam
+
+###16710724
+
+###number of reads mapped to transcriptome
+
+samtools -S -b rna.sam > rna.bam
+
+samtools -c -F 4 rna.bam
+
+##33146409
+
+
+###number of different transcripts identified 
+
+###count number of transcripts with expression values > 0
+
+###60021
+
+###number of different genes identified
+
+### using biomaRt package associate genes for all the transcripts corresponding to each gene thereby counting unique genes
+
+##18295
+
+
+
+
+
+
+
+
+
