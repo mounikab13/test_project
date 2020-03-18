@@ -1,0 +1,42 @@
+#!/bin/bash
+
+basedir = /home/mreddy/projects/RNAseq_encode/data
+
+
+#download human genome fasta file from ensembl and corresponding gtf file for generating indexes using STAR
+
+wget -P $basedir  http://labshare.cshl.edu/shares/gingeraslab/www-data/dobin/STAR/STARgenomes/ENSEMBL/homo_sapiens/ENSEMBL.homo_sapiens.release-83/Homo_sapiens.GRCh38.dna.primary_assembly.fa
+
+wget -P $basedir  ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+
+gunzip $basedir/Homo_sapiens.GRCh38.99.gtf.gz
+
+
+#specify all required parameters for genomeGenerate
+
+STAR --runThreadN 10 --runMode genomeGenerate --genomeDir $basedir --genomeFastaFiles $basedir/Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile $basedir/Homo_sapiens.GRCh38.99.gtf --sjdbOverhang 100
+
+
+
+#download polyA plus RNA fastq files of GM17828 cell line from ENCODE which are paired end and with read length 100
+
+wget -P $basedir  https://www.encodeproject.org/files/ENCFF000FCG/@@download/ENCFF000FCG.fastq.gz
+
+gunzip $basedir/ENCFF000FCG.fastq.gz
+
+wget -P $basedir  https://www.encodeproject.org/files/ENCFF000FCU/@@download/ENCFF000FCU.fastq.gz
+
+gunzip $basedir/ENCFF000FCU.fastq.gz
+
+wget -P $basedir https://www.encodeproject.org/files/ENCFF000FCH/@@download/ENCFF000FCH.fastq.gz
+
+gunzip $basedir/ENCFF000FCH.fastq.gz
+
+wget -P $basedir  https://www.encodeproject.org/files/ENCFF000FCI/@@download/ENCFF000FCI.fastq.gz
+
+gunzip $basedir/ENCFF000FCI.fastq.gz
+
+#now perform mapping job using STAR and specify prefix names so that outcome files can be easily identified 
+
+STAR --runThreadN 1 --genomeDir /hpcnfs/home/ieo5306/projects/rna_star/data --readFilesIn ENCFF000FCG.fastq ENCFF000FCI.fastq --outFilterType BySJout --outFilterMultimapNmax 20 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverReadLmax 0.04 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --quantMode GeneCounts --outFileNamePrefix /hpcnfs/home/ieo5306/projects/rna_star/analysis/FCG_FCI
+
