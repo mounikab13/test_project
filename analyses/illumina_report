@@ -29,7 +29,7 @@ mean = 138137622
 
 ### number of reads mapped to genome
 
-samtools view -c -F 4 sample.bam
+samtools view -F 260 sample.bam | samtools view -f 2
 
 ewj_ewx.bam - 159459404
 eww_exe.bam - 287156562
@@ -45,8 +45,9 @@ total number of mapped reads = 1837537998
 avg value of mapped reads = 229692250
 
 ###number of reads mapped to transcriptome
+#### sum of estimated counts in abundance.tsv from kallisto
 
-#227818
+#583418846
 
 
 ###kallisto performs mapping to transcriptome 
