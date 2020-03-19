@@ -11,23 +11,23 @@ wc -l NA12878-DirectRNA_All_Guppy_3.2.6.fastq/4 = 13361612
 
 ###number of mapped reads to genome
 
+###flag 2324 throws away the unmapped and secondary alignments
+
 ###mapping to genome produces sam file which is then converted to bam file
 
-samtools -S -b genome.sam > genome.bam
+samtools view genome.sam -bh -t -F 2324 Homo_sapiens.GRCh38.dna.primary_assembly.fa > genome.filt.bam
 
-###number of mapped reads with flag value 4 in BAM file 
+samtools view -c genome.filt.bam
 
-samtools view -c -F 4 genome.bam
-
-###16710724
+###5336687
 
 ###number of reads mapped to transcriptome
 
-samtools -S -b rna.sam > rna.bam
+samtools view rna.sam -bh -t -F 2324 Homo_sapiens.GRCh38.dna.primary_assembly.fa > rna.filt.bam
 
-samtools -c -F 4 rna.bam
+samtools -c rna.filt.bam
 
-##33146409
+##9390854
 
 
 ###number of different transcripts identified 
