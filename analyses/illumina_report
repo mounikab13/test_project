@@ -23,7 +23,7 @@ wc -l ENCFF001RCX.fastq/4
 wc -l ENCFF001RCY.fastq/4
 ##246085152
 
-total number of reads = 1105100973
+total number of reads = 2210201946
 
 mean = 138137622
 
