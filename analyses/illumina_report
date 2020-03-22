@@ -29,26 +29,24 @@ mean = 138137622
 
 ### number of reads mapped to genome
 
-samtools view -F 260 sample.bam | samtools view -f 2
+samtools view -c -F 260 -f 2 sample.bam
 
-ewj_ewx.bam - 159459404
-eww_exe.bam - 287156562
-ezf_ezt.bam - 212866686
-ezr_ezh.bam - 296704478
-fcg_fci.bam - 276493240
-fch_fcu.bam- 254746938
-rcx_rdf.bam - 260688130
-rcy_rdg.bam - 89422560
+ewj_ewx.bam - 139935216
+eww_exe.bam - 247847712
+ezf_ezt.bam - 181516430
+ezr_ezh.bam - 240995456
+fcg_fci.bam - 236916396
+fch_fcu.bam- 214685016
+rcx_rdf.bam - 245165834
+rcy_rdg.bam - 84651148
 
-total number of mapped reads = 1837537998
+total number of mapped reads =  1591713208
 
-avg value of mapped reads = 229692250
+avg value of mapped reads = 198964151
 
 ###number of reads mapped to transcriptome
-#### sum of estimated counts in abundance.tsv from kallisto
 
 #583418846
-
 
 ###kallisto performs mapping to transcriptome 
 
@@ -59,5 +57,4 @@ avg value of mapped reads = 229692250
 ###number of different genes identified
 
 ##60676 
-
 
