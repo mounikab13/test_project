@@ -1,0 +1,20 @@
+
+
+###flair align
+
+python flair.py align -g Homo_sapiens.GRCh38.dna.primary_assembly.fa -r NA12878-DirectRNA_All_Guppy_3.2.6.fastq -v1.3 -n -m /hpcnfs/home/ieo5306/anaconda2/envs/py36/bin/minimap2
+
+
+python /hpcnfs/home/ieo5306/projects2/flair/scripts/flair/bin/bam2Bed12.py -i flair.aligned.bam > nano_flair.bed12
+
+
+### flair correct
+python /hpcnfs/home/ieo5306/projects2/flair/scripts/flair/flair.py correct -n -q nano_flair.bed12 -g Homo_sapiens.GRCh38.dna.primary_assembly.fa --gtf Homo_sapiens.GRCh38.99.gtf --chromsizes hg38.chrom.sizes --print_check
+
+
+### flair collapse
+python /hpcnfs/home/ieo5306/projects2/flair/scripts/flair/flair.py collapse --bedtools /hpcnfs/home/ieo5306/anaconda2/envs/py36/bin/bedtools --samtools /hpcnfs/home/ieo5306/anaconda2/envs/py36/bin/samtools --minimap2 /hpcnfs/home/ieo5306/anaconda2/envs/py36/bin/minimap2 --gtf Homo_sapiens.GRCh38.99.gtf -g Homo_sapiens.GRCh38.dna.primary_assembly.fa -r NA12878-DirectRNA_All_Guppy_3.2.6.fastq -q flair_all_corrected.psl
+
+
+###flair quantify
+python /hpcnfs/home/ieo5306/projects2/flair/scripts/flair/flair.py quantify --tpm --samtools /hpcnfs/home/ieo5306/anaconda2/envs/py36/bin/samtools --minimap2 /hpcnfs/home/ieo5306/anaconda2/envs/py36/bin/minimap2 -i flair.collapse.isoforms.fa -r reads_manifest.tsv
