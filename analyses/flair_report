@@ -1,0 +1,30 @@
+###number of reads in fastq file 
+
+wc -l NA12878-DirectRNA_All_Guppy_3.2.6.fastq/4 = 13361612
+
+
+###number of reads mapped to genome
+
+## in flair align
+
+samtools view -c flair.aligned.bam
+
+9474547
+
+###number of reads mapped to transcriptome
+
+### in flair correct
+
+wc -l flair_all_corrected.bed 
+
+8929373
+
+
+####number of different transcripts identified
+
+
+545802
+
+###number of different genes identified
+
+61004
