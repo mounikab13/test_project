@@ -25,7 +25,7 @@ samtools view -c genome.filt.bam
 
 samtools view rna.sam -bh -t -F 2324 Homo_sapiens.GRCh38.dna.primary_assembly.fa > rna.filt.bam
 
-samtools -c rna.filt.bam
+samtools view -c rna.filt.bam
 
 ##9390854
 
